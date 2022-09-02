@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# 🎉 원티드 프리온보딩 프론트엔드 코스 2차 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 배포 링크
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+## 팀원들을 소개합니다.
 
-### `npm start`
+|멤버|담당|포부|
+|:--|:--|:--|
+|[김승모(팀장)](https://github.com/endmoseung)|프론트엔드|프리온보딩 코스 수료후 관련기업 취업성공!|
+|[손우영](https://github.com/dndud2906)|프론트엔드|프리온보딩 기반으로 하루빨리 이직|
+|[이종호](https://github.com/devfrank9)|프론트엔드|원피스 완결 전에 오픈소스 컨트리뷰터 달기|
+|[민유경](https://github.com/MINYUKYUNG)|프론트엔드|10월 안에 취직!|
+|[강다현](https://github.com/KKangdaa)|프론트엔드|실무를 아는 신입개발자 되기|
+|[임성훈](https://github.com/sasumpi123)|프론트엔드| |
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 실행 방법
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+레포지토리를 `clone` 합니다
+```markdown
+$ git clone https://github.com/Pre-HotSix/wanted-pre-onboarding-fruitte.git
+```
+package를 설치합니다
+```markdown
+$ npm install
+```
+프로젝트를 실행합니다
+```markdown
+$ npm start
+```
+<br/>
 
-### `npm test`
+## 폴더 구조
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+root
+├── .prettierrc
+├── .eslint
+├── .env
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+├── public
+|   ├── favicon.ico
+|   └── index.html
+└── src
+    ├── apis
+    ├── components
+    ├── hooks
+    ├── pages
+    ├── routes
+    ├── styles
+    ├── theme
+    ├── types
+    ├── App.tsx
+    └── index.tsx
+```
 
-### `npm run build`
+|폴더|구분|
+|:--|:--|
+|apis|서버 통신을 위한 api로직을 정의|
+|components|코드 재사용을 위한 컴포넌트 관리형 폴더|
+|hooks|자주사용되는 훅을 커스텀 훅으로 관리하는 폴더|
+|pages|url주소에 따른 페이지 구성 폴더|
+|routes|라우팅 관련 처리 폴더|
+|styles|전역으로 사용하는 style 관리 폴더|
+|theme|재사용을 위한 CSS 관리 폴더|
+|types|타입정의를 관리하는 폴더|
+<br/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Best Practice
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
