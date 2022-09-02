@@ -60,14 +60,14 @@ root
 
 |폴더|구분|
 |:--|:--|
-|apis|서버 통신을 위한 api로직을 정의|
 |components|코드 재사용을 위한 컴포넌트 관리형 폴더|
-|hooks|자주사용되는 훅을 커스텀 훅으로 관리하는 폴더|
 |pages|url주소에 따른 페이지 구성 폴더|
+|libs|전역함수 및 변수 관리 폴더|
 |routes|라우팅 관련 처리 폴더|
 |styles|전역으로 사용하는 style 관리 폴더|
 |theme|재사용을 위한 CSS 관리 폴더|
-|types|타입정의를 관리하는 폴더|
+|utils|유틸 함수 관리 폴더|
+|constants|더미 및 이미지 등 로컬 파일|
 <br/>
 
 ## Best Practice
