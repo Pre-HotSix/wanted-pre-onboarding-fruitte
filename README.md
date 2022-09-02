@@ -36,26 +36,26 @@ $ npm start
 
 ```
 root
+├── .vscode
 ├── .prettierrc
 ├── .eslint
-├── .env
 ├── package-lock.json
 ├── package.json
-├── tsconfig.json
+├── jsconfig.json
 ├── public
 |   ├── favicon.ico
 |   └── index.html
 └── src
-    ├── apis
     ├── components
-    ├── hooks
     ├── pages
+    ├── libs
     ├── routes
     ├── styles
     ├── theme
-    ├── types
-    ├── App.tsx
-    └── index.tsx
+    ├── utils
+    ├── constants
+    ├── App.jsx
+    └── index.js
 ```
 
 |폴더|구분|
