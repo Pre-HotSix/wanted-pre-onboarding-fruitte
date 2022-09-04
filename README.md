@@ -16,6 +16,22 @@
 |[임성훈](https://github.com/sasumpi123)|프론트엔드| |
 <br/>
 
+## Git Convention
+
+https://pre-hotsix.notion.site/92063fa659904b4584fd59c75bcfaea2
+
+## Commit & Merge Convention
+
+```
+1. dev (개발) 브랜치를 생성한다.
+2. 각자 주어진 작업에 대한 issue를 생성한다.
+3. 생성된 issue 번호로 개별 branch 이름을 갖는다
+4. 개별 branch에서 작업후 Git 컨벤션에 따라 커밋 및 PR을 한다.
+5. 이때, PR은 dev(개발)로 한다.
+6. 모든 issue close 및 작업사항 없을시 main으로 dev(개발) 브랜치를 PR한다.
+7. 이후 작업 발생시 1~6을 반복한다.
+```
+
 ## 실행 방법
 
 레포지토리를 `clone` 합니다
