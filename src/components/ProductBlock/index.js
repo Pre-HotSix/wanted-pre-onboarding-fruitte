@@ -10,7 +10,7 @@ export default function ProductBlock({ data }) {
   const navigate = useNavigate();
 
   return (
-    <S.ProductRow onClick={() => navigate(`${data.id}`)}>
+    <S.ProductRow onClick={() => navigate(`/productdetail/${data.id}`)}>
       <S.ImgCol>
         <img src={data.imgUrl[0]} />
       </S.ImgCol>

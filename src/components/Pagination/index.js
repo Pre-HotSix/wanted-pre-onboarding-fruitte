@@ -9,7 +9,7 @@ Pagination.propTypes = {
 };
 
 export default function Pagination({ total, limit, page, setPage }) {
-  const numPages = Math.ceil(total / limit);
+  let numPages = Math.ceil(total / limit);
 
   return (
     <S.Container>
