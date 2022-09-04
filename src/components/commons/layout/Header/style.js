@@ -3,13 +3,17 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 1200px;
   height: 90px;
+  padding: 20px 0;
+  margin: 0 auto;
+  border-bottom: 1px solid #e9e9e9;
+
   img {
-    width: 12.7%;
-    margin-left: 8.33%;
-    margin-right: 9.375%;
+    width: auto;
+    height: 50px;
     cursor: pointer;
+    margin-right: 135px;
   }
 `;
 export const TapLink = styled.p`

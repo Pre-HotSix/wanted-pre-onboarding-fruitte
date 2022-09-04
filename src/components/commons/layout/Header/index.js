@@ -6,8 +6,8 @@ export default function Navigation() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const storePath =
-    '/' || '/productdetail' || '/productorder' || 'productordercheck';
-  const adminPath = 'adminenroll' || 'adminmanage';
+    '/' || '/productdetail/*' || '/productorder' || 'productordercheck';
+  const adminPath = '/adminenroll' || '/adminmanage';
 
   return (
     <S.Container>
