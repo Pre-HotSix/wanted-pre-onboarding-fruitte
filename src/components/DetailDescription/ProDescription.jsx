@@ -1,5 +1,5 @@
+import * as S from './style';
 import React from 'react';
-import styled from 'styled-components';
 import ProCount from '../DetailCount/ProCount';
 
 const ProDescription = items => {
@@ -55,83 +55,15 @@ const ProDescription = items => {
   const info = { price, required, id };
 
   return (
-    <DescContainer>
-      <TitleBox>{title}</TitleBox>
-      <DescBox>{description}</DescBox>
-      <PriceBox>{priceTag()}</PriceBox>
-      <InfoBox>{information()}</InfoBox>
+    <S.DescContainer>
+      <S.TitleBox>{title}</S.TitleBox>
+      <S.DescBox>{description}</S.DescBox>
+      <S.PriceBox>{priceTag()}</S.PriceBox>
+      <S.InfoBox>{information()}</S.InfoBox>
       <ProCount {...info} />
-    </DescContainer>
+      {/* <ProRequired {...info} /> */}
+    </S.DescContainer>
   );
 };
 
 export default ProDescription;
-
-const DescContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  padding-left: 50px;
-  padding-top: 35px;
-  position: relative;
-`;
-
-const TitleBox = styled.div`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 21px;
-  line-height: 30px;
-  padding-bottom: 10px;
-`;
-
-const DescBox = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  padding-bottom: 20px;
-  & > p {
-    margin: 0;
-    padding: 0;
-  }
-`;
-
-const PriceBox = styled.div`
-  width: 100%;
-  height: 41px;
-  font-style: normal;
-  margin-bottom: 20px;
-  display: flex;
-  & > span {
-    display: inline-block;
-    line-height: 41px;
-    font-weight: 700;
-    font-size: 24px;
-    padding-right: 10px;
-  }
-  & > .discount {
-    font-size: 28px;
-    color: rgb(248, 135, 32);
-    padding-right: 20px;
-  }
-  & > .regular {
-    font-weight: 400;
-    font-size: 16px;
-    text-decoration-line: line-through;
-    color: rgb(169, 169, 169);
-  }
-`;
-
-const InfoBox = styled.div`
-  display: flex;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  & > :nth-child(1) {
-    font-weight: 700;
-    padding-right: 13px;
-  }
-  & > div > span {
-    display: block;
-  }
-`;
