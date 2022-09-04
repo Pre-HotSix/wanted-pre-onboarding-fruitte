@@ -3,14 +3,16 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   background-color: #778b70;
-  padding-top: 3%;
+  padding: 60px 0;
 `;
 export const Inner = styled.div`
-  margin: 0 8.33%;
+  width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   img {
-    width: 12.7%;
+    width: 183px;
+    height: 50px;
     margin-bottom: 20px;
   }
   p {
@@ -20,6 +22,5 @@ export const Inner = styled.div`
   }
   p:last-child {
     margin-top: 2%;
-    margin-bottom: 3%;
   }
 `;

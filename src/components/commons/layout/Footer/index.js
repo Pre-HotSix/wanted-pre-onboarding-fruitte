@@ -1,11 +1,10 @@
 import * as S from './style';
-import { imgs } from 'constants';
 
 export default function Footer() {
   return (
     <S.Container>
       <S.Inner>
-        <img src={imgs.logo} alt="" />
+        <img src="/images/logo.png" />
         <p>상호명: Local & Life Inc. | 대표: 홍인기</p>
         <p>
           전화번호: 010-8828-0472 | 사업자번호: 625-81-01879 | 통신판매허가번호:
