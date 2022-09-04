@@ -1,9 +1,19 @@
+import * as S from './style';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
-const ProButtons = () => {
+const ProButtons = data => {
+  const {
+    id,
+    required,
+    singleCount,
+    singlePrice,
+    multiCount,
+    multiPrice,
+    show,
+  } = data;
+  const navigate = useNavigate();
   const [heart, setHeart] = useState(0);
   const changeHeart = () => {
     heart === 0 ? setHeart(1) : setHeart(0);
@@ -18,65 +28,65 @@ const ProButtons = () => {
     );
   };
 
+  const resultData = () => {
+    const state = { id, total: { totalCount: 0, totalPrice: 0 } };
+    multiPrice.forEach((ele, index) => {
+      if (index !== 0) {
+        const name = ele[0];
+        const count = multiCount[ele[0]];
+        const semiPrice = ele[1] * count;
+        const price = semiPrice.toLocaleString() + '원';
+        state[index] = { name, count, price };
+        state.total = {
+          ...state.total,
+          totalCount: state.total.totalCount + count,
+          totalPrice: state.total.totalPrice + semiPrice,
+        };
+      }
+    });
+
+    return state;
+  };
+
+  const sumPrice = () => {
+    const data = resultData();
+    const total = data.total.totalPrice;
+    const sumResult = total.toLocaleString() + '원';
+    return sumResult;
+  };
+
+  const sumBox = () => {
+    if (show) {
+      return (
+        <S.SumBox>
+          <span>Total : </span>
+          {sumPrice()}
+        </S.SumBox>
+      );
+    }
+  };
+
+  const sendData = () => {
+    if (required.length === 0) {
+      const state = { id, count: singleCount, price: singlePrice };
+      navigate('/productorder', { state: state });
+    } else {
+      if (show) {
+        navigate('/productorder', { state: resultData() });
+      } else alert('고객님, 필수선택을 완료하신 후 구매하기 버튼을 눌러주세요');
+    }
+  };
+
   return (
-    <ButtonContainer>
-      <BuyButton>
-        <Link to="/productorder">구매하기</Link>
-      </BuyButton>
-      <CartButton>장바구니</CartButton>
-      <LikeButton onClick={changeHeart}>{isHeart()}</LikeButton>
-    </ButtonContainer>
+    <>
+      {sumBox()}
+      <S.ButtonContainer>
+        <S.BuyButton onClick={sendData}>구매하기</S.BuyButton>
+        <S.CartButton>장바구니</S.CartButton>
+        <S.LikeButton onClick={changeHeart}>{isHeart()}</S.LikeButton>
+      </S.ButtonContainer>
+    </>
   );
 };
 
 export default ProButtons;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  & > button {
-    height: 100%;
-    border-radius: 25px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 23px;
-    cursor: pointer;
-  }
-`;
-
-const BuyButton = styled.button`
-  width: 245px;
-  background-color: rgb(76, 156, 46);
-  & > a {
-    color: rgb(255, 255, 255);
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    line-height: 50px;
-  }
-`;
-
-const CartButton = styled.button`
-  border: 1px solid rgb(76, 156, 46);
-  width: 170px;
-`;
-
-const LikeButton = styled.button`
-  width: 120px;
-  border: 1px solid rgb(248, 135, 32);
-  color: rgb(248, 135, 32);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  & > span {
-    color: rgb(0, 0, 0);
-  }
-  & > svg {
-    width: 26%;
-    height: 24px;
-    padding-top: 4px;
-  }
-`;
