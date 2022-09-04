@@ -61,7 +61,6 @@ const ProDescription = items => {
       <S.PriceBox>{priceTag()}</S.PriceBox>
       <S.InfoBox>{information()}</S.InfoBox>
       <ProCount {...info} />
-      {/* <ProRequired {...info} /> */}
     </S.DescContainer>
   );
 };
