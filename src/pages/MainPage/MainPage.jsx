@@ -1,12 +1,5 @@
-
 import * as S from './style';
-import {
-  Navigation,
-  TextBanner,
-  ProductBlock,
-  Pagination,
-  Footer,
-} from 'components';
+import { TextBanner, ProductBlock, Pagination } from 'components';
 import { useRecoilValue } from 'recoil';
 import { productState } from 'recoil/product';
 import { usePagination } from 'hooks/usePagination';
@@ -18,7 +11,6 @@ export default function MainPage() {
 
   return (
     <>
-      <Navigation />
       <TextBanner
         img={
           'https://cdn.imweb.me/upload/S201907022014f7de8adf6/075897ae563f4.png'
@@ -46,7 +38,6 @@ export default function MainPage() {
           setPage={setPage}
         />
       </S.Container>
-      <Footer />
     </>
   );
 }
