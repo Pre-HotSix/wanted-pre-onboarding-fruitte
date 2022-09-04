@@ -16,6 +16,7 @@ export const dummies = [
     },
     tag: [1, 3, 5],
     required: [],
+    sale: true,
   },
   {
     id: 2,
@@ -44,6 +45,7 @@ export const dummies = [
     },
     tag: [1, 2, 4],
     required: ['필수선택', ['2kg', 52000], ['4kg', 92000], ['5kg', 109000]],
+    sale: true,
   },
   {
     id: 3,
@@ -62,6 +64,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: ['필수선택', ['1kg', 20000], ['2kg', 36000]],
+    sale: true,
   },
   {
     id: 4,
@@ -85,6 +88,7 @@ export const dummies = [
       ['유자청 1kg 1병', 13300],
       ['착즙유자 500ml', 18800],
     ],
+    sale: true,
   },
   {
     id: 5,
@@ -106,6 +110,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: [],
+    sale: true,
   },
   {
     id: 6,
@@ -129,6 +134,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['필수선택', ['5봉지', 35000], ['10봉지', 65000]],
+    sale: true,
   },
   {
     id: 7,
@@ -147,6 +153,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: [],
+    sale: true,
   },
   {
     id: 8,
@@ -165,6 +172,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: [],
+    sale: true,
   },
   {
     id: 9,
@@ -187,6 +195,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['간장', ['간장 500ml', 6500], ['간장 1L', 12500]],
+    sale: true,
   },
   {
     id: 10,
@@ -209,6 +218,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['필수선택', ['된장 1kg', 19000], ['된장 2kg', 37000]],
+    sale: true,
   },
   {
     id: 11,
@@ -231,6 +241,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['선택필수', ['고추장 1kg', 25000], ['고추장 2kg', 49000]],
+    sale: true,
   },
   {
     id: 12,
@@ -249,6 +260,7 @@ export const dummies = [
     },
     tag: [1, 3, 5],
     required: [],
+    sale: true,
   },
   {
     id: 13,
@@ -277,6 +289,7 @@ export const dummies = [
     },
     tag: [1, 2, 4],
     required: ['필수선택', ['2kg', 52000], ['4kg', 92000], ['5kg', 109000]],
+    sale: true,
   },
   {
     id: 14,
@@ -295,6 +308,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: ['필수선택', ['1kg', 20000], ['2kg', 36000]],
+    sale: true,
   },
   {
     id: 15,
@@ -318,6 +332,7 @@ export const dummies = [
       ['유자청 1kg 1병', 13300],
       ['착즙유자 500ml', 18800],
     ],
+    sale: true,
   },
   {
     id: 16,
@@ -339,6 +354,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: [],
+    sale: true,
   },
   {
     id: 17,
@@ -362,6 +378,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['필수선택', ['5봉지', 35000], ['10봉지', 65000]],
+    sale: true,
   },
   {
     id: 18,
@@ -380,6 +397,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: [],
+    sale: true,
   },
   {
     id: 19,
@@ -398,6 +416,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: [],
+    sale: true,
   },
   {
     id: 20,
@@ -420,6 +439,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['간장', ['간장 500ml', 6500], ['간장 1L', 12500]],
+    sale: true,
   },
   {
     id: 21,
@@ -442,6 +462,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['필수선택', ['된장 1kg', 19000], ['된장 2kg', 37000]],
+    sale: true,
   },
   {
     id: 22,
@@ -464,6 +485,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['선택필수', ['고추장 1kg', 25000], ['고추장 2kg', 49000]],
+    sale: true,
   },
   {
     id: 23,
@@ -482,6 +504,7 @@ export const dummies = [
     },
     tag: [1, 3, 5],
     required: [],
+    sale: true,
   },
   {
     id: 24,
@@ -510,6 +533,7 @@ export const dummies = [
     },
     tag: [1, 2, 4],
     required: ['필수선택', ['2kg', 52000], ['4kg', 92000], ['5kg', 109000]],
+    sale: true,
   },
   {
     id: 25,
@@ -528,6 +552,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: ['필수선택', ['1kg', 20000], ['2kg', 36000]],
+    sale: true,
   },
   {
     id: 26,
@@ -551,6 +576,7 @@ export const dummies = [
       ['유자청 1kg 1병', 13300],
       ['착즙유자 500ml', 18800],
     ],
+    sale: true,
   },
   {
     id: 27,
@@ -572,6 +598,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: [],
+    sale: true,
   },
   {
     id: 28,
@@ -595,6 +622,7 @@ export const dummies = [
     },
     tag: [1, 3],
     required: ['필수선택', ['5봉지', 35000], ['10봉지', 65000]],
+    sale: true,
   },
   {
     id: 29,
@@ -613,6 +641,7 @@ export const dummies = [
     },
     tag: [1, 2],
     required: [],
+    sale: true,
   },
   {
     id: 30,
@@ -631,5 +660,6 @@ export const dummies = [
     },
     tag: [1, 3],
     required: [],
+    sale: true,
   },
 ];
