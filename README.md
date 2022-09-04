@@ -38,22 +38,26 @@ $ npm start
 root
 ├── .vscode
 ├── .prettierrc
-├── .eslint
+├── .eslintrc
 ├── package-lock.json
 ├── package.json
 ├── jsconfig.json
 ├── public
 |   ├── favicon.ico
-|   └── index.html
+|   ├── index.html
+|   ├── data
+|   └── images
 └── src
     ├── components
-    ├── pages
+    ├── constants
+    ├── hooks
     ├── libs
+    ├── pages
+    ├── recoil
     ├── routes
     ├── styles
     ├── theme
     ├── utils
-    ├── constants
     ├── App.jsx
     └── index.js
 ```
