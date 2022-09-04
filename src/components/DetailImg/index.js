@@ -9,7 +9,7 @@ const ProductImg = data => {
 
   useEffect(() => {
     slide.current = setInterval(() => {
-      setCount(count => count + 1);
+      setCount(count => count + 0.5);
     }, 3000);
     return () => clearInterval(slide);
   }, []);
