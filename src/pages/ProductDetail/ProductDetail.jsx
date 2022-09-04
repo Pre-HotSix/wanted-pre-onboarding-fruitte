@@ -1,5 +1,5 @@
+import * as S from './style';
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import YesProduct from '../../components/DetailYesProduct/YesProduct';
 import { dummies } from 'constants/dummy';
@@ -18,12 +18,7 @@ const ProductDetail = () => {
     }
   };
 
-  return <ProductLayout>{result()}</ProductLayout>;
+  return <S.ProductLayout>{result()}</S.ProductLayout>;
 };
 
 export default ProductDetail;
-
-const ProductLayout = styled.div`
-  padding-top: 90px;
-  position: relative;
-`;
