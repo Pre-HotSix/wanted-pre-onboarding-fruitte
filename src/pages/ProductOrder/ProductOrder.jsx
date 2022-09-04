@@ -1,17 +1,72 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import productData from '../../constants/productData.json';
-import ordererInfos from '../../constants/ordererInfos.json';
+import { ReactComponent as XButton } from '../../assets/X_InActive.svg';
 import DaumPostcode from 'react-daum-postcode';
+import { orderInfos } from 'constants/orderInfos';
+import { dummies } from 'constants/dummy';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { productDetailsAtom } from 'recoil/product';
+
 // import { useParams } from 'react-router-dom';
 
 const ProductOrder = () => {
   // const { id } = useParams();
-  const productDatas = productData[0];
+  const productDatas = dummies[0];
+  const [modalState, setModalState] = useState(false);
+  const [inputAddressValue, setInputAddressValue] = useState();
+  const [inputZipCodeValue, setInputZipCodeValue] = useState();
+
+  const [productDetails, setProductDetails] =
+    useRecoilState(productDetailsAtom);
+
+  const navigate = useNavigate();
+
+  const modalRef = useRef(); //화면 외부 클릭하면 창이 닫히게
+  useEffect(() => {
+    document.addEventListener('mousedown', clickModalOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', clickModalOutside);
+    };
+  });
+
+  const clickModalOutside = event => {
+    if (modalState && !modalRef.current.contains(event.target)) {
+      setModalState(false);
+    }
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
     console.log(e);
+    if (
+      e.target[1].value &&
+      e.target[2].value &&
+      e.target[3].value &&
+      e.target[4].value &&
+      e.target[10].value &&
+      e.target[11].value
+    ) {
+      navigate('/productordercheck');
+    } else {
+      alert('주문정보를 확인해주세요');
+    }
+    const today = new Date();
+    const year = today.getFullYear(); // 년도
+    const month = today.getMonth() + 1; // 월
+    const date = today.getDate(); // 날짜
+    console.log(year, month, date);
+    setProductDetails([...productDetails], {
+      year: year,
+      month: month,
+      day: date,
+      orderNumber: 1234567890123456,
+      imgUrl: 'https://cdn.imweb.me/thumbnail/20220520/873c30ce7d7f4.png',
+      title: '물에 타먹는 제주 수제 감귤칩(10봉지x1BOX)',
+      price: 22500,
+      howMany: 1,
+    });
   };
 
   const shipMentPrice = 2500;
@@ -21,10 +76,37 @@ const ProductOrder = () => {
 
   const onCompletePost = data => {
     console.log(data);
-    setAddress(data.address);
+    setModalState(false);
+    setInputAddressValue(data.address);
+    setInputZipCodeValue(data.zonecode);
   };
+
+  const postCodeStyle = {
+    width: '400px',
+    height: '400px',
+    display: modalState ? 'block' : 'none',
+  };
+
+  const handleModal = () => {
+    setModalState(true);
+  };
+
+  const handleXbutton = () => {
+    setModalState(false);
+  };
+
+  const handleZipCode = e => {
+    setModalState(false);
+    // set;
+  };
+
+  const handleAddress = e => {
+    setInputAddressValue(e.target.value);
+  };
+
   return (
     <Container>
+      <ModalBlock modalState={modalState}></ModalBlock>
       <PayTitle>결제하기</PayTitle>
       <ProductContainer>
         <ProductInfos>
@@ -51,10 +133,22 @@ const ProductOrder = () => {
                 ></PhoneNumberInput>
               </NameAndNumberWrapper>
               <ZipCodeWrapper>
-                <ZipCodeInput placeholder="연락처" type={'text'}></ZipCodeInput>
-                <ZipCodeFindButton>주소찾기</ZipCodeFindButton>
+                <ZipCodeInput
+                  onChange={handleZipCode}
+                  value={inputZipCodeValue}
+                  placeholder="우편번호"
+                  type={'text'}
+                ></ZipCodeInput>
+                <ZipCodeFindButton onClick={handleModal}>
+                  주소찾기
+                </ZipCodeFindButton>
               </ZipCodeWrapper>
-              <AddressInput placeholder="주소" type={'text'}></AddressInput>
+              <AddressInput
+                onChange={handleAddress}
+                value={inputAddressValue}
+                placeholder="주소"
+                type={'text'}
+              ></AddressInput>
               <DetailAddressInput
                 placeholder="상세주소"
                 type={'text'}
@@ -76,19 +170,55 @@ const ProductOrder = () => {
               </RequestSelect>
               <PayMethodContainer>
                 <PayMethodTitle>결제수단</PayMethodTitle>
+                <PayMethodWrapper>
+                  <PayWithCard>
+                    <input type="checkbox" />
+                    <span>카드결제</span>
+                  </PayWithCard>
+                  <PayWithDirect>
+                    <input type="checkbox" />
+                    <span>무통장입금</span>
+                  </PayWithDirect>
+                </PayMethodWrapper>
+                <PayAssignmentContainer>
+                  <AllCheck>
+                    <input type="checkbox" />
+                    <span>
+                      주문 내용을 확인하였으며, 정보 제공 등에 동의합니다. (전체
+                      동의)
+                    </span>
+                  </AllCheck>
+                  <UserCheck>
+                    <input type="checkbox" />
+                    <span>개인정보 수집 및 이용 동의</span>
+                    <span className="condition">약관보기</span>
+                  </UserCheck>
+                  <ConditionCheck>
+                    <input type="checkbox" />
+                    <span>구매조건 확인 및 결제진행에 동의</span>
+                  </ConditionCheck>
+                </PayAssignmentContainer>
               </PayMethodContainer>
-              {/* <DaumPostcode onComplete={onCompletePost} autoClose></DaumPostcode> */}
+              <PostCodeWrapper ref={modalRef} modalState={modalState}>
+                <PostCodeHeader>
+                  <StyledMyIcon onClick={handleXbutton}></StyledMyIcon>
+                </PostCodeHeader>
+                <DaumPostcode
+                  style={postCodeStyle}
+                  onComplete={onCompletePost}
+                ></DaumPostcode>
+              </PostCodeWrapper>
             </UserAddressAndPayment>
             <UserInfosAndPayDetail>
               <UserInfos>
                 <UserInfosTitle>주문자 정보</UserInfosTitle>
                 <UserInfosOrderer>
                   <div className="title">주문자 이름</div>
-                  <div className="infos">{ordererInfos.name}</div>
+                  <div className="infos">{orderInfos.name}</div>
                 </UserInfosOrderer>
                 <UserInfosPhoneNumber>
                   <div className="title">연락처</div>
-                  <div className="infos">{ordererInfos.phoneNumber}</div>
+                  <div className="infos">{orderInfos.phoneNumber}</div>
                 </UserInfosPhoneNumber>
               </UserInfos>
               <PayDetail>
@@ -129,6 +259,18 @@ const Container = styled.div`
   margin-bottom: 100px;
   border-radius: 20px;
   text-align: center;
+  position: relative;
+`;
+
+const ModalBlock = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.BLACK};
+  opacity: 0.5;
+  position: absolute;
+  display: ${({ modalState }) => (modalState ? 'block' : 'none')};
+  top: 0;
+  left: 0;
 `;
 
 const PayTitle = styled.div`
@@ -194,6 +336,8 @@ const UserAddressAndPayment = styled.div`
 const ShipMentTitle = styled.div`
   font-weight: bold;
   margin-bottom: 20px;
+  text-align: start;
+  font-size: 20px;
 `;
 
 const OrdererInfoCheckWrapper = styled.div`
@@ -248,7 +392,9 @@ const DetailAddressInput = styled.input`
   margin-bottom: 12px;
 `;
 
-const RequestsTitle = styled.div``;
+const RequestsTitle = styled.div`
+  text-align: start;
+`;
 
 const RequestSelect = styled.select`
   padding: 8px 12px;
@@ -259,7 +405,77 @@ const PayMethodContainer = styled.div`
   text-align: start;
 `;
 
-const PayMethodTitle = styled.div``;
+const PostCodeWrapper = styled.div`
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 400px;
+  height: 450px;
+  z-index: 100;
+  background-color: ${({ theme }) => theme.colors.WHITE};
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  display: ${({ modalState }) => (modalState ? 'block' : 'none')};
+`;
+
+const PostCodeHeader = styled.div`
+  position: relative;
+  height: 50px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.LIGHT_GRAY};
+`;
+
+const StyledMyIcon = styled(XButton)`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 200;
+`;
+
+const PayMethodTitle = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 20px;
+`;
+
+const PayMethodWrapper = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+  input {
+    margin-right: 10px;
+    color: red;
+  }
+`;
+
+const PayWithCard = styled.div``;
+
+const PayWithDirect = styled.div`
+  margin-left: 10px;
+`;
+
+const PayAssignmentContainer = styled.div``;
+
+const AllCheck = styled.div`
+  margin-bottom: 10px;
+  span {
+    font-weight: bold;
+  }
+`;
+
+const UserCheck = styled.div`
+  margin-left: 20px;
+  margin-bottom: 10px;
+  .condition {
+    color: ${({ theme }) => theme.colors.LIGHT_GRAY};
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
+const ConditionCheck = styled.div`
+  margin-left: 20px;
+`;
 
 const UserInfosAndPayDetail = styled.div`
   width: 40%;
