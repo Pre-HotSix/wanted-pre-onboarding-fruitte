@@ -21,9 +21,6 @@ const AdminEnrollForm = () => {
   const uploadImg = () => {
     setImgUrl('https://cdn.imweb.me/thumbnail/20220521/69f390486a3e3.png');
   };
-  const regProduct = () => {
-    navigate('/adminmanage');
-  };
   const handleAddOption = () => {
     setOptions([...options, tempOption]);
     setShowOptionInput(false);
@@ -32,6 +29,38 @@ const AdminEnrollForm = () => {
   const hideOptionInput = () => {
     setShowOptionInput(false);
     setTempOption('');
+  };
+  const validAlertText = (targetText, totalSentence = undefined) => {
+    if (totalSentence) alert(totalSentence);
+    else alert(`${targetText}이(가) 입력되지 않았습니다.`);
+  };
+  const getIsValid = () => {
+    if (name === '') {
+      validAlertText('상품명');
+      return false;
+    }
+    if (price === '' || price === '0') {
+      validAlertText('판매가');
+      return false;
+    }
+    if (salePrice === '' || salePrice === '0') {
+      validAlertText('할인가');
+      return false;
+    } else if (Number(salePrice) > Number(price)) {
+      validAlertText('할인가는 판매가보다 높을수 없습니다.');
+      return false;
+    }
+    if (qty === '' || qty === '0') {
+      validAlertText('수량');
+      return false;
+    }
+    return true;
+  };
+  const regProduct = () => {
+    const isValid = getIsValid();
+    if (isValid) {
+      navigate('adminmanage');
+    }
   };
 
   return (
