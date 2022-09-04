@@ -1,10 +1,10 @@
+import * as S from './style';
 import React, { Fragment, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FaChevronUp, FaChevronDown, FaTimes } from 'react-icons/fa';
 import ProButtons from '../DetailButtons/ProButtons';
 
 const ProCount = data => {
-  const { price, required } = data;
+  const { price, required, id } = data;
   const [count, setCount] = useState(1);
   const [show, setShow] = useState(false);
   const [sepCount, setSepCount] = useState({});
@@ -35,63 +35,89 @@ const ProCount = data => {
       setSepCount({ ...sepCount, [item]: sepCount[item] + 1 });
     } else setCount(count + 1);
   };
+  const deleteCount = item => {
+    setSepCount({ ...sepCount, [item]: 0 });
+  };
+  const resetCount = () => {
+    const bridgeCount = { ...sepCount };
+    for (const key in sepCount) {
+      if (bridgeCount[key] === 0) {
+        bridgeCount[key] = 1;
+      }
+    }
+    setSepCount({ ...bridgeCount });
+    setShow(!show);
+  };
 
-  const subInfo = (itemN, count, total) => {
-    return (
-      <CountBox>
-        <div>
-          <span>{itemN}</span>
-          <ButtonBox>
-            <button onClick={() => minusCount(itemN)}>
-              <FaChevronDown />
-            </button>
-            <button>{count}</button>
-            <button onClick={() => plusCount(itemN)}>
-              <FaChevronUp />
-            </button>
-          </ButtonBox>
-        </div>
-        <span>{total}</span>
-      </CountBox>
-    );
+  const deleteBtn = itemN => {
+    if (itemN !== '수량') {
+      return (
+        <S.DeleteButton onClick={() => deleteCount(itemN)}>
+          <FaTimes />
+        </S.DeleteButton>
+      );
+    }
+  };
+
+  const countBox = (itemN, count, total) => {
+    if (count !== 0) {
+      return (
+        <S.CountBox>
+          <div>
+            <span>{itemN}</span>
+            <S.ButtonBox>
+              <button onClick={() => minusCount(itemN)}>
+                <FaChevronDown />
+              </button>
+              <button>{count}</button>
+              <button onClick={() => plusCount(itemN)}>
+                <FaChevronUp />
+              </button>
+            </S.ButtonBox>
+          </div>
+          <span>{total}</span>
+          {deleteBtn(itemN)}
+        </S.CountBox>
+      );
+    }
   };
 
   const choice = item => {
     return (
-      <RequiredBox>
-        <div onClick={() => setShow(!show)}>
+      <S.RequiredBox>
+        <div onClick={resetCount}>
           {`${item} (필수)`}
           <FaChevronDown />
         </div>
-      </RequiredBox>
+      </S.RequiredBox>
     );
   };
 
   const openCloseBtn = () => {
     if (show) {
       return (
-        <ToggleButton onClick={() => setShow(!show)}>
+        <S.ToggleButton onClick={() => setShow(!show)}>
           <FaChevronUp />
-        </ToggleButton>
+        </S.ToggleButton>
       );
     }
   };
 
   const result = () => {
     if (required.length === 0) {
-      return <>{subInfo('수량', count, totalPrice())}</>;
+      return <>{countBox('수량', count, totalPrice())}</>;
     } else {
       const preview = required.map((item, index) => {
-        const itemName = item[0];
-        const itemPrice = item[1];
-        const total = (itemPrice * sepCount[itemName]).toLocaleString() + '원';
+        const itemName = item[0],
+          itemPrice = item[1],
+          total = (itemPrice * sepCount[itemName]).toLocaleString() + '원';
 
         if (index === 0) {
           return <div key={index}>{show ? null : choice(item)}</div>;
         } else {
           return (
             <Fragment key={index}>
-              {show ? subInfo(itemName, sepCount[itemName], total) : null}
+              {show ? countBox(itemName, sepCount[itemName], total) : null}
             </Fragment>
           );
         }
@@ -101,87 +127,27 @@ const ProCount = data => {
     }
   };
 
+  const singleCount = count,
+    singlePrice = totalPrice(),
+    multiCount = sepCount,
+    multiPrice = required;
+  const forData = {
+    id,
+    required,
+    singleCount,
+    singlePrice,
+    multiCount,
+    multiPrice,
+    show,
+  };
+
   return (
-    <CountCotainer>
+    <S.CountCotainer>
       {openCloseBtn()}
       {result()}
-      <ProButtons />
-    </CountCotainer>
+      <ProButtons {...forData} />
+    </S.CountCotainer>
   );
 };
 
 export default ProCount;
-
-const CountCotainer = styled.div`
-  margin-top: 30px;
-`;
-
-const ToggleButton = styled.div`
-  text-align: center;
-  height: 30px;
-  line-height: 30px;
-`;
-
-const RequiredBox = styled.div`
-  width: 100%;
-  height: 115px;
-  padding-top: 30px;
-  padding-bottom: 50px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  text-indent: 5px;
-  border-top: 1px solid rgb(169, 169, 169);
-  text-align: center;
-  & > div {
-    height: 35px;
-    line-height: 35px;
-    border: 1px solid rgb(169, 169, 169);
-    > svg {
-      margin-left: 4px;
-      padding-top: 4px;
-    }
-  }
-`;
-
-const CountBox = styled(RequiredBox)`
-  width: 100%;
-  height: 115px;
-  padding-top: 30px;
-  padding-bottom: 50px;
-  display: flex;
-  justify-content: space-between;
-  & > span {
-    display: inline-block;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 35px;
-  }
-  & > div {
-    display: flex;
-    border: 0;
-    & > span {
-      display: inline-block;
-      line-height: 35px;
-      padding-right: 35px;
-    }
-  }
-`;
-
-const ButtonBox = styled.div`
-  display: flex;
-  & > button {
-    font-size: 16px;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    border: 1px solid rgb(169, 169, 169);
-    color: rgb(76, 156, 46);
-    cursor: pointer;
-  }
-  & :nth-child(2) {
-    line-height: 25px;
-    color: rgb(0, 0, 0);
-    cursor: default;
-  }
-`;
