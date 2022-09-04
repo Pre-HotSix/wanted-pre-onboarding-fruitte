@@ -28,7 +28,7 @@ const AdminEnroll = () => {
 
 const Container = styled.section`
   width: 1200px;
-  height: 90vh;
+  height: auto;
   padding: 20px;
   margin: 0 auto;
   background: #2a750e;
@@ -50,6 +50,7 @@ const Navigation = styled.nav`
   background: #2a750e;
   border-left: 5px solid #2a750e;
   overflow-x: hidden;
+  overflow-y: hidden;
   ul {
     width: 100%;
     padding-left: 5px;
@@ -110,8 +111,6 @@ const Article = styled.article`
   padding: 30px;
   border-radius: 20px;
   width: 100%;
-  height: 100%;
-
   .topWrap {
     display: flex;
     justify-content: space-between;

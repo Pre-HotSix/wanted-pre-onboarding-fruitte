@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import NumberFormat from 'react-number-format';
+import * as S from './style';
 
 const AdminEnrollForm = () => {
   const navigate = useNavigate();
@@ -65,106 +65,150 @@ const AdminEnrollForm = () => {
 
   return (
     <div>
-      <label htmlFor="productName">상품명</label>
-      <input
-        id="productName"
-        type="text"
-        value={name}
-        onChange={e => setName(e.target.value)}
-        maxLength="100"
-      />
-      <label htmlFor="productName">{`${name.length} / 100`}</label>
-      <br />
-      <label htmlFor="price">판매가</label>
-      <NumberFormat
-        id="price"
-        thousandSeparator={true}
-        prefix={'₩'}
-        allowNegative={false}
-        onValueChange={value => {
-          setPrice(value.value);
-        }}
-      />
-      <br />
-      <label htmlFor="salePrice">할인가</label>
-      <NumberFormat
-        id="salePrice"
-        thousandSeparator={true}
-        prefix={'₩'}
-        allowNegative={false}
-        onValueChange={value => {
-          setSalePrice(value.value);
-        }}
-      />
-      <br />
-      <label htmlFor="qty">수량</label>
-      <NumberFormat
-        id="qty"
-        thousandSeparator={true}
-        suffix={'개'}
-        allowNegative={false}
-        onValueChange={value => {
-          setQty(value.value);
-        }}
-      />
-      <br />
-      <label htmlFor="shippingFee">배송비</label>
-      <NumberFormat
-        id="shippingFee"
-        thousandSeparator={true}
-        prefix={'₩'}
-        allowNegative={false}
-        onValueChange={value => {
-          setShippingFee(value.value);
-        }}
-      />
-      <br />
-      <label htmlFor="shippingFee">옵션</label>
-      <input
-        type="button"
-        value="옵션 등록"
-        onClick={() => {
-          setShowOptionInput(true);
-        }}
-      />
-      <input
-        type="button"
-        value="옵션 초기화"
-        onClick={() => {
-          setOptions([]);
-        }}
-      />
+      <S.FormInputWrapper>
+        <S.Label htmlFor="productName">상품명</S.Label>
+        <S.FormInput
+          id="productName"
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          maxLength="100"
+          inputSize="650"
+        />
+        <S.Label htmlFor="productName">{`${name.length} / 100`}</S.Label>
+      </S.FormInputWrapper>
+
+      <S.FormInputWrapper>
+        <S.Label htmlFor="price">판매가</S.Label>
+        <S.FormInput
+          as={NumberFormat}
+          id="price"
+          thousandSeparator={true}
+          prefix={'₩'}
+          allowNegative={false}
+          onValueChange={value => {
+            setPrice(value.value);
+          }}
+        />
+      </S.FormInputWrapper>
+
+      <S.FormInputWrapper>
+        <S.Label htmlFor="salePrice">할인가</S.Label>
+        <S.FormInput
+          as={NumberFormat}
+          id="salePrice"
+          thousandSeparator={true}
+          prefix={'₩'}
+          allowNegative={false}
+          onValueChange={value => {
+            setSalePrice(value.value);
+          }}
+        />
+      </S.FormInputWrapper>
+      <S.FormInputWrapper>
+        <S.Label htmlFor="qty">수량</S.Label>
+        <S.FormInput
+          as={NumberFormat}
+          id="qty"
+          thousandSeparator={true}
+          suffix={'개'}
+          allowNegative={false}
+          onValueChange={value => {
+            setQty(value.value);
+          }}
+        />
+      </S.FormInputWrapper>
+      <S.FormInputWrapper>
+        <S.Label htmlFor="shippingFee">배송비</S.Label>
+        <S.FormInput
+          as={NumberFormat}
+          id="shippingFee"
+          thousandSeparator={true}
+          prefix={'₩'}
+          allowNegative={false}
+          onValueChange={value => {
+            setShippingFee(value.value);
+          }}
+        />
+      </S.FormInputWrapper>
+      <S.FormInputWrapper>
+        <S.Label htmlFor="shippingFee">옵션</S.Label>
+        <S.Button
+          type="button"
+          value="옵션 등록"
+          onClick={() => {
+            setShowOptionInput(true);
+          }}
+          isRegBtn={true}
+          marginLeft={85}
+        />
+        <S.Button
+          type="button"
+          value="옵션 초기화"
+          onClick={() => {
+            setOptions([]);
+          }}
+          isRegBtn={false}
+        />
+      </S.FormInputWrapper>
       {showOptionInput && (
-        <div>
-          <input
+        <S.FormInputWrapper>
+          <S.FormInput
             type="text"
             value={tempOption}
             onChange={e => {
               setTempOption(e.target.value);
             }}
+            maxLength="100"
           />
-          <input type="button" value="추가" onClick={handleAddOption} />
-          <input type="button" value="취소" onClick={hideOptionInput} />
-        </div>
+          <S.Button
+            type="button"
+            value="추가"
+            onClick={handleAddOption}
+            isRegBtn={true}
+            nonAbsolute={true}
+            marginLeft={430}
+          />
+          <S.Button
+            type="button"
+            value="취소"
+            onClick={hideOptionInput}
+            isRegBtn={false}
+            nonAbsolute={true}
+          />
+        </S.FormInputWrapper>
       )}
       {options.length > 0 &&
         options.map((option, idx) => {
-          return <p key={idx}>{option}</p>;
+          return <p key={idx}>* {option}</p>;
         })}
-      <br />
-      <label>메인이미지</label>
-      <input type="button" onClick={uploadImg} value="이미지 등록" />
-      {imgUrl !== '' && <img src={imgUrl} />}
-      <br />
-      <textarea
-        id="desc"
-        value={desc}
-        onChange={e => setDesc(e.target.value)}
-        maxLength="1500"
+      <S.FormInputWrapper>
+        <S.Label>메인이미지</S.Label>
+        <S.Button
+          type="button"
+          onClick={uploadImg}
+          value="이미지 등록"
+          isRegBtn={true}
+          marginLeft={43}
+        />
+        {imgUrl !== '' && <img src={imgUrl} />}
+      </S.FormInputWrapper>
+      <S.FormTextAreaWrapper>
+        <S.TextArea
+          id="desc"
+          value={desc}
+          onChange={e => setDesc(e.target.value)}
+          maxLength="1500"
+        />
+        <S.Label htmlFor="name">{`${desc.length} / 1500`}</S.Label>
+      </S.FormTextAreaWrapper>
+      <S.Button
+        type="button"
+        onClick={regProduct}
+        value="상품 등록"
+        isRegBtn={true}
+        marginLeft={700}
       />
-      <label htmlFor="name">{`${desc.length} / 1500`}</label>
-      <br />
-      <input type="button" onClick={regProduct} value="상품 등록" />
     </div>
   );
 };
