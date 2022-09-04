@@ -1,5 +1,11 @@
 # 🎉 원티드 프리온보딩 프론트엔드 코스 2차 과제
 
+## 디자인 시안 by 강다현
+
+https://www.figma.com/file/IuCmKCuMWls9jUntm69z1N/farm?node-id=3%3A548
+
+<img width="490" alt="image" src="https://user-images.githubusercontent.com/90244663/188319070-5e428000-e4a3-4e58-bf24-df3b34274c53.png">
+
 ## 배포 링크
 
 <br/>
