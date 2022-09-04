@@ -16,6 +16,22 @@
 |[임성훈](https://github.com/sasumpi123)|프론트엔드| |
 <br/>
 
+## Git Convention
+
+```
+1. dev (개발) 브랜치를 생성한다.
+2. 각자 주어진 작업에 대한 issue를 생성한다.
+3. 생성된 issue 번호로 개별 branch 이름을 갖는다
+4. 개별 branch에서 작업후 Git 컨벤션에 따라 커밋 및 PR을 한다.
+5. 이때, PR은 dev(개발)로 한다.
+6. 모든 issue close 및 작업사항 없을시 main으로 dev(개발) 브랜치를 PR한다.
+7. 이후 작업 발생시 1~6을 반복한다.
+```
+
+## Commit & Merge Convention
+
+https://pre-hotsix.notion.site/92063fa659904b4584fd59c75bcfaea2
+
 ## 실행 방법
 
 레포지토리를 `clone` 합니다
@@ -36,39 +52,75 @@ $ npm start
 
 ```
 root
+├── .vscode
 ├── .prettierrc
-├── .eslint
-├── .env
+├── .eslintrc
 ├── package-lock.json
 ├── package.json
-├── tsconfig.json
+├── jsconfig.json
 ├── public
 |   ├── favicon.ico
-|   └── index.html
+|   ├── index.html
+|   ├── data
+|   └── images
 └── src
-    ├── apis
     ├── components
+    ├── constants
     ├── hooks
+    ├── libs
     ├── pages
+    ├── recoil
     ├── routes
     ├── styles
     ├── theme
-    ├── types
-    ├── App.tsx
-    └── index.tsx
+    ├── utils
+    ├── App.jsx
+    └── index.js
 ```
 
 |폴더|구분|
 |:--|:--|
-|apis|서버 통신을 위한 api로직을 정의|
 |components|코드 재사용을 위한 컴포넌트 관리형 폴더|
-|hooks|자주사용되는 훅을 커스텀 훅으로 관리하는 폴더|
 |pages|url주소에 따른 페이지 구성 폴더|
+|libs|전역함수 및 변수 관리 폴더|
 |routes|라우팅 관련 처리 폴더|
 |styles|전역으로 사용하는 style 관리 폴더|
 |theme|재사용을 위한 CSS 관리 폴더|
-|types|타입정의를 관리하는 폴더|
+|utils|유틸 함수 관리 폴더|
+|constants|더미 및 이미지 등 로컬 파일|
 <br/>
+
+## 디자인 시안 by 강다현
+
+https://www.figma.com/file/IuCmKCuMWls9jUntm69z1N/farm?node-id=3%3A548
+
+<img width="490" alt="image" src="https://user-images.githubusercontent.com/90244663/188319070-5e428000-e4a3-4e58-bf24-df3b34274c53.png">
+
+## 더미 데이터 목업 by 민유경
+
+```public/data/productData.json```
+
+```
+data =
+  {
+    "id": number,
+    "title": string,
+    "imgUrl": {url:string}[],
+    "price": {
+      "regular": number,
+      "sale": number
+    },
+    "desc": string,
+    "origin": string,
+    "shipping": {
+      "method": string,
+      "fee": string,
+      "info": string
+    },
+    "tag": {element:number}[],
+    "required": []
+  }[]
+```
 
 ## Best Practice
 
