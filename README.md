@@ -19,12 +19,15 @@
 ## Git Convention
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 https://pre-hotsix.notion.site/92063fa659904b4584fd59c75bcfaea2
 
 ## Commit & Merge Convention
 
 =======
 >>>>>>> 23e0839f3234860cb00bcc06594c5b8f7fc675f3
+=======
+>>>>>>> 9bc029bb5dc577ec8454a9d7b214e1ddc23a8724
 ```
 1. dev (개발) 브랜치를 생성한다.
 2. 각자 주어진 작업에 대한 issue를 생성한다.
@@ -35,13 +38,10 @@ https://pre-hotsix.notion.site/92063fa659904b4584fd59c75bcfaea2
 7. 이후 작업 발생시 1~6을 반복한다.
 ```
 
-<<<<<<< HEAD
-=======
 ## Commit & Merge Convention
 
 https://pre-hotsix.notion.site/92063fa659904b4584fd59c75bcfaea2
 
->>>>>>> 23e0839f3234860cb00bcc06594c5b8f7fc675f3
 ## 실행 방법
 
 레포지토리를 `clone` 합니다
