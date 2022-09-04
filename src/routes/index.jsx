@@ -13,7 +13,9 @@ const RootRoute = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/productdetail" element={<ProductDetail />} />
+        <Route path="/productdetail" element={<ProductDetail />}>
+          <Route path=":docId" element={<ProductDetail />} />
+        </Route>
         <Route path="/productorder" element={<ProductOrder />} />
         <Route path="/productordercheck" element={<ProductOrderCheck />} />
         <Route path="/adminenroll" element={<AdminEnroll />} />
