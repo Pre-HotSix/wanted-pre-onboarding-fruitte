@@ -3,7 +3,7 @@ import { AiOutlineHome } from 'react-icons/ai';
 
 export const Container = styled.section`
   width: 1200px;
-  height: calc(90vh - 90px);
+  height: calc(100vh - 140px);
   padding: 20px;
   margin: 0 auto;
   background: #d7ebc2;
@@ -11,6 +11,7 @@ export const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  margin-top: 50px;
 `;
 export const Logo = styled.img`
   display: block;
