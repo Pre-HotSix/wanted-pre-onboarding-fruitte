@@ -1,11 +1,5 @@
 # 🎉 원티드 프리온보딩 프론트엔드 코스 2차 과제
 
-## 디자인 시안 by 강다현
-
-https://www.figma.com/file/IuCmKCuMWls9jUntm69z1N/farm?node-id=3%3A548
-
-<img width="490" alt="image" src="https://user-images.githubusercontent.com/90244663/188319070-5e428000-e4a3-4e58-bf24-df3b34274c53.png">
-
 ## 배포 링크
 
 <br/>
@@ -75,6 +69,38 @@ root
 |utils|유틸 함수 관리 폴더|
 |constants|더미 및 이미지 등 로컬 파일|
 <br/>
+
+## 디자인 시안 by 강다현
+
+https://www.figma.com/file/IuCmKCuMWls9jUntm69z1N/farm?node-id=3%3A548
+
+<img width="490" alt="image" src="https://user-images.githubusercontent.com/90244663/188319070-5e428000-e4a3-4e58-bf24-df3b34274c53.png">
+
+## 더미 데이터 목업 by 민유경
+
+```public/data/productData.json```
+
+```
+data =
+  {
+    "id": number,
+    "title": string,
+    "imgUrl": {url:string}[],
+    "price": {
+      "regular": number,
+      "sale": number
+    },
+    "desc": string,
+    "origin": string,
+    "shipping": {
+      "method": string,
+      "fee": string,
+      "info": string
+    },
+    "tag": {element:number}[],
+    "required": []
+  }[]
+```
 
 ## Best Practice
 
