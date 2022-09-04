@@ -18,6 +18,10 @@
 
 ## Git Convention
 
+https://pre-hotsix.notion.site/92063fa659904b4584fd59c75bcfaea2
+
+## Commit & Merge Convention
+
 ```
 1. dev (개발) 브랜치를 생성한다.
 2. 각자 주어진 작업에 대한 issue를 생성한다.
