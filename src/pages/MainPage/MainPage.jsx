@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import * as S from './style';
 import {
   Navigation,
@@ -7,12 +6,14 @@ import {
   Pagination,
   Footer,
 } from 'components';
-import { dummies } from 'constants/dummy';
+import { useRecoilValue } from 'recoil';
+import { productState } from 'recoil/product';
+import { usePagination } from 'hooks/usePagination';
 
 export default function MainPage() {
-  const [boardData, setBoardData] = useState(dummies);
-  const [page, setPage] = useState(1);
-  const offset = (page - 1) * 10;
+  const boardData = useRecoilValue(productState);
+  const filteredBoard = boardData.filter(item => item.sale);
+  const { page, setPage, limit, offset } = usePagination();
 
   return (
     <>
@@ -32,14 +33,14 @@ export default function MainPage() {
       <S.Container>
         <div>
           <span>FRUITTE STORE</span>
-          <span>{boardData.length}</span>
+          <span>{filteredBoard.length}</span>
         </div>
-        {boardData.slice(offset, offset + 10).map(item => (
-          <ProductBlock data={item} key={item.id} />
-        ))}
+        {filteredBoard
+          .slice(offset, offset + limit)
+          .map(item => item.sale && <ProductBlock data={item} key={item.id} />)}
         <Pagination
-          total={boardData.length}
-          limit={10}
+          total={filteredBoard.length}
+          limit={limit}
           page={page}
           setPage={setPage}
         />
