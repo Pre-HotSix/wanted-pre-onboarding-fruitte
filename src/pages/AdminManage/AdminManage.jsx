@@ -1,155 +1,87 @@
-import React from 'react';
-import styled from 'styled-components';
-import { AiOutlineHome } from 'react-icons/ai';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Navigation } from 'components';
+import * as S from './AdminManage.styles';
+import { dummies } from 'constants/dummy';
+import { AiOutlineCheck } from 'react-icons/ai';
 
-const AdminManage = () => {
-  return (
-    <Container>
-      <Navigation>
-        <Logo src="/images/logo.jpeg" />
-        <ul>
-          <li className="list active">
-            <HomeIcon />
-            <span className="title">Home</span>
-          </li>
-        </ul>
-      </Navigation>
-      <Article>
-        <div className="topWrap">
-          <h2 className="title">STORE LIST</h2>
-          <button>
-            <Link to="/adminenroll">+ADD</Link>
-          </button>
-        </div>
-        <Line />
-        <table>
-          <th>
-            <th>상품번호</th>
-            <th>제품정보</th>
-            <th>제품가격</th>
-            <th>제품수량</th>
-            <th>제품 노출 여부</th>
-            <th>수정</th>
-            <th>삭제</th>
-          </th>
-        </table>
-      </Article>
-    </Container>
-  );
+const getPrice = price => {
+  return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-const Container = styled.section`
-  width: 1200px;
-  height: 90vh;
-  padding: 20px;
-  margin: 0 auto;
-  background: #2a750e;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-const Logo = styled.img`
-  display: block;
-  width: 164px;
-  height: 45px;
-  margin-top: 15px;
-  margin-bottom: 45px;
-`;
-const Navigation = styled.nav`
-  position: relative;
-  width: 216px;
-  height: 100%;
-  background: #2a750e;
-  border-left: 5px solid #2a750e;
-  overflow-x: hidden;
-  ul {
-    width: 100%;
-    padding-left: 5px;
-    margin: 0;
-    li {
-      position: relative;
-      width: 100%;
-      height: 45px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      padding-left: 15px;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-      &.active {
-        background: #fff;
-        color: #4c9c2e;
-        &::before {
-          content: '';
-          position: absolute;
-          top: -40px;
-          right: 0;
-          width: 40px;
-          height: 40px;
-          background: #2a750e;
-          border-radius: 45%;
-          box-shadow: 15px 15px 0 #fff;
-        }
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -40px;
-          right: 0;
-          width: 40px;
-          height: 40px;
-          background: #2a750e;
-          border-radius: 45%;
-          box-shadow: 15px -15px 0 #fff;
-        }
-      }
-      .title {
-        position: relative;
-        display: block;
-        padding-left: 8px;
-        white-space: nowrap;
-      }
+export default function AdminManage() {
+  // const [sale, setSale] = useState(true);s
+  const [productItem, setProductItem] = useState(dummies);
+
+  const onClickDelete = event => {
+    const ok = window.confirm('삭제하시겠습니까?');
+
+    if (ok) {
+      setProductItem(
+        dummies.filter(el => {
+          if (el.id !== Number(event.target.id)) {
+            return el.id !== event.target.id;
+          }
+        }),
+      );
     }
-  }
-`;
-const HomeIcon = styled(AiOutlineHome)`
-  width: 20px;
-  height: 20px;
-`;
+  };
 
-const Article = styled.article`
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 20px;
-  width: 100%;
-  height: 100%;
-
-  .topWrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .title {
-      margin: 0;
-    }
-    > button {
-      width: 100px;
-      height: 40px;
-      border-radius: 20px;
-      background-color: #4c9c2e;
-      a {
-        text-decoration: none;
-        color: #fff;
-      }
-    }
-  }
-`;
-const Line = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #a9a9a9;
-  margin: 20px 0;
-`;
-
-export default AdminManage;
+  return (
+    <>
+      <Navigation />
+      <S.Container>
+        <S.Sidebar>
+          <S.Logo src="/images/logo.jpeg" />
+          <ul>
+            <li className="list active">
+              <S.HomeIcon />
+              <span className="title">Home</span>
+            </li>
+          </ul>
+        </S.Sidebar>
+        <S.Article>
+          <div className="topWrap">
+            <h2 className="title">STORE LIST</h2>
+            <button>
+              <Link to="/adminenroll">+ADD</Link>
+            </button>
+          </div>
+          <S.Line />
+          <div className="table">
+            <div className="row">
+              <span>상품번호</span>
+              <span>제품정보</span>
+              <span>제품가격</span>
+              <span>제품수량</span>
+              <span>제품 노출 여부</span>
+              <span>수정</span>
+              <span>삭제</span>
+            </div>
+            <div className="column">
+              {productItem.map(el => (
+                <div className="row" key={el.id}>
+                  <span>{String(el.id).padStart(6, '0')}</span>
+                  <span>
+                    <img className="contentImg" src={el.imgUrl[1]} />
+                    <span className="contenttitle">{el.title}</span>
+                  </span>
+                  <span>₩ {getPrice(el.price.regular)}</span>
+                  <span>{el.price.regular}개</span>
+                  <span>
+                    <input type="radio" name={el.id} readOnly checked />
+                    <input type="radio" name={el.id} />
+                  </span>
+                  <span className="edit">EDIT</span>
+                  <span className="delete" id={el.id} onClick={onClickDelete}>
+                    DELETE
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </S.Article>
+      </S.Container>
+    </>
+  );
+}
