@@ -1,7 +1,7 @@
 import * as S from './style';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import YesProduct from '../../components/DetailYesProduct/YesProduct';
+import YesProduct from '../../components/DetailYesProduct';
 import { dummies } from 'constants/dummy';
 
 const ProductDetail = () => {
