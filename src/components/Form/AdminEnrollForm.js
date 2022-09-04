@@ -84,7 +84,7 @@ const AdminEnrollForm = () => {
           maxLength="100"
           inputSize="650"
         />
-        <S.Label htmlFor="productName">{`${name.length} / 100`}</S.Label>
+        <S.LabelPost htmlFor="productName">{`${name.length} / 100`}</S.LabelPost>
       </S.FormInputWrapper>
 
       <S.FormInputWrapper>

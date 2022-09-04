@@ -19,9 +19,14 @@ export const FormInput = styled.input`
 `;
 
 export const Label = styled.label`
-  display: 'block';
   position: relative;
   margin-left: 5px;
+  width: 50px;
+`;
+
+export const LabelPost = styled.label`
+  position: absolute;
+  margin-left: 750px;
   width: 50px;
 `;
 
