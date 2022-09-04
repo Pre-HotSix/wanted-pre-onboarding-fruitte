@@ -1,26 +1,21 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navigation } from 'components';
 import * as S from './AdminManage.styles';
-import { dummies } from 'constants/dummy';
-import { AiOutlineCheck } from 'react-icons/ai';
-
-const getPrice = price => {
-  return String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
+import { Navigation, ProductItem } from 'components';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { productState } from 'recoil/product';
 
 export default function AdminManage() {
-  // const [sale, setSale] = useState(true);s
-  const [productItem, setProductItem] = useState(dummies);
+  const productInfo = useRecoilValue(productState);
+  const [product, setProduct] = useRecoilState(productState);
 
   const onClickDelete = event => {
     const ok = window.confirm('삭제하시겠습니까?');
 
     if (ok) {
-      setProductItem(
-        dummies.filter(el => {
-          if (el.id !== Number(event.target.id)) {
-            return el.id !== event.target.id;
+      setProduct(
+        productInfo.filter(item => {
+          if (item.id !== Number(event.target.id)) {
+            return item.id !== event.target.id;
           }
         }),
       );
@@ -59,24 +54,13 @@ export default function AdminManage() {
               <span>삭제</span>
             </div>
             <div className="column">
-              {productItem.map(el => (
-                <div className="row" key={el.id}>
-                  <span>{String(el.id).padStart(6, '0')}</span>
-                  <span>
-                    <img className="contentImg" src={el.imgUrl[1]} />
-                    <span className="contenttitle">{el.title}</span>
-                  </span>
-                  <span>₩ {getPrice(el.price.regular)}</span>
-                  <span>{el.price.regular}개</span>
-                  <span>
-                    <input type="radio" name={el.id} readOnly checked />
-                    <input type="radio" name={el.id} />
-                  </span>
-                  <span className="edit">EDIT</span>
-                  <span className="delete" id={el.id} onClick={onClickDelete}>
-                    DELETE
-                  </span>
-                </div>
+              {product.map((el, index) => (
+                <ProductItem
+                  key={el.id}
+                  item={el}
+                  index={index}
+                  onClickDelete={onClickDelete}
+                />
               ))}
             </div>
           </div>

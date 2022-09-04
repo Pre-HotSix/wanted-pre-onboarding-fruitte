@@ -22,6 +22,7 @@ export const Logo = styled.img`
 export const Sidebar = styled.nav`
   position: relative;
   width: 216px;
+  min-width: 200px;
   height: 100%;
   background: #2a750e;
   border-left: 5px solid #2a750e;
@@ -181,6 +182,9 @@ export const Article = styled.article`
               );
               background-repeat: no-repeat;
               outline: none;
+              &:nth-of-type(1) {
+                border: 2px solid #3abf08;
+              }
             }
 
             input,
@@ -190,6 +194,15 @@ export const Article = styled.article`
             input:checked {
               background-position: 0 0;
               border: 2px solid #3abf08;
+              &:nth-of-type(2) {
+                border: 2px solid #db1508;
+                background-image: -webkit-radial-gradient(
+                  rgb(222, 0, 0) 0%,
+                  rgb(222, 0, 0, 1) 15%,
+                  rgb(222, 0, 0, 0.3) 28%,
+                  rgb(222, 0, 0, 0) 70%
+                );
+              }
             }
             input:checked ~ input,
             input:checked ~ input:active {
