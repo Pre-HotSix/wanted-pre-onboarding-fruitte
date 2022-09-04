@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     background: inherit;
     outline: none;
   }
+
+  input{
+    outline: none;
+  }
 `;
 
 export default GlobalStyle;
