@@ -19,14 +19,23 @@ const AdminEnrollForm = () => {
   const [tempOption, setTempOption] = useState('');
 
   const uploadImg = () => {
-    setImgUrl('https://cdn.imweb.me/thumbnail/20220521/69f390486a3e3.png');
+    // 이미지 업로드할 공간이 없으므로 작업x
   };
   const handleAddOption = () => {
+    if (tempOption.length <= 0) {
+      validAlertText('옵션');
+      return;
+    }
     setOptions([...options, tempOption]);
     setShowOptionInput(false);
     setTempOption('');
   };
   const hideOptionInput = () => {
+    setShowOptionInput(false);
+    setTempOption('');
+  };
+  const handleResetOptions = () => {
+    setOptions([]);
     setShowOptionInput(false);
     setTempOption('');
   };
@@ -47,7 +56,7 @@ const AdminEnrollForm = () => {
       validAlertText('할인가');
       return false;
     } else if (Number(salePrice) > Number(price)) {
-      validAlertText('할인가는 판매가보다 높을수 없습니다.');
+      validAlertText(undefined, '할인가는 판매가보다 높을수 없습니다.');
       return false;
     }
     if (qty === '' || qty === '0') {
@@ -145,9 +154,7 @@ const AdminEnrollForm = () => {
         <S.Button
           type="button"
           value="옵션 초기화"
-          onClick={() => {
-            setOptions([]);
-          }}
+          onClick={handleResetOptions}
           isRegBtn={false}
         />
       </S.FormInputWrapper>
