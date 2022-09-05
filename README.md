@@ -5,7 +5,9 @@
 <br/>
 
 ## 배포 링크
-<https://hotsix-fruitte.netlify.app/>   
+
+https://hotsix-fruitte.netlify.app/
+
 <br/>
 
 ## 팀원들을 소개합니다.
@@ -17,7 +19,7 @@
 |[이종호](https://github.com/devfrank9)|프론트엔드|원피스 완결 전에 오픈소스 컨트리뷰터 달기|
 |[민유경](https://github.com/MINYUKYUNG)|프론트엔드|10월 안에 취직!|
 |[강다현](https://github.com/KKangdaa)|프론트엔드|실무를 아는 신입개발자 되기|
-|[임성훈](https://github.com/sasumpi123)|프론트엔드| |
+|[임성훈](https://github.com/sasumpi123)|프론트엔드|좋은회사로 이직 성공하기|
 <br/>
 
 ## Commit & Merge Convention
@@ -140,8 +142,20 @@ data =
 <br />
 
 ## 기술 스택
+
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![Recoil](https://camo.githubusercontent.com/9e90e7acc2251aa177a93dc563bc36c57ab992c87937ef96d3deeebaef6cb8fc/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f5265636f696c2d3637334142383f7374796c653d666f722d7468652d6261646765266c6f676f3d5265636f696c266c6f676f436f6c6f723d7768697465)
+
 <br />
 
 ## Best Practice
+
+1. 컴포넌트에서 JSX 파일과 styled-component 파일을 분리했습니다.  
+💡 이유 : styled-componet 파일이 길어지면서 한 파일 내에서 JSX 코드와 CSS 코드를 동시에 보기가 어려워져, 가독성을 위해 분리하였습니다. 
+        추가적으로 style 컴포넌트에는 앞에 S.을 포함해 네이밍을 하여, 일반 컴포넌트와 구분하였습니다.
+2. 공통적으로 쓰는 컴포넌트를 Router 안에서 사용했습니다 (Navigation, Footer 등).  
+💡 이유 : 최대한 코드 양을 줄이기 위해서 이며, 코드가 많아지면 빌드 속도 및 렌더링 속도가 저하되기 때문입니다. 또한, import의 빈도도 줄일수 있습니다.
+3. 많은 컴포넌트, 코드를 export 해서 관리해야 하는 경우 index.js 파일을 만들어 import 경로를 줄였습니다.  
+💡 이유 : import 경로가 길어지면 가독성이 떨어지고, 파일 추적이 불편하다는 단점이 있기때문입니다. 이를 줄이기 위해 각 root 폴더에 index.js 파일을 만들어 export default 핸들링을 했습니다.
+4. Pagination 컴포넌트, usePagination 훅 분리로 재사용 가능하도록 추상화 하였습니다.  
+💡 이유 : 페이지 번호 상태를 훅으로 보내고, 컴포넌트에는 단순히 최대갯수 정보를 넘겨주면 어디서든 사용이 가능하도록 구성하였습니다.
 

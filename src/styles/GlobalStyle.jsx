@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-* {
-  box-sizing: border-box;
-}
- body {
+  * {
+    box-sizing: border-box;
+  }
+  body {
     margin:0;
     padding:0;
   }
@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
   button{
     border: none;
     background: inherit;
+    outline: none;
+  }
+
+  input{
     outline: none;
   }
 `;
