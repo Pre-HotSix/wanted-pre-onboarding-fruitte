@@ -149,7 +149,7 @@ const AdminEnrollForm = () => {
             setShowOptionInput(true);
           }}
           isRegBtn={true}
-          marginLeft={85}
+          marginLeft={65}
         />
         <S.Button
           type="button"
@@ -196,7 +196,7 @@ const AdminEnrollForm = () => {
           onClick={uploadImg}
           value="이미지 등록"
           isRegBtn={true}
-          marginLeft={43}
+          marginLeft={23}
         />
         {imgUrl !== '' && <img src={imgUrl} />}
       </S.FormInputWrapper>
