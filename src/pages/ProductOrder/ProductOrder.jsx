@@ -12,7 +12,7 @@ import { productDetailsAtom } from 'recoil/product';
 const ProductOrder = () => {
   const { state } = useLocation();
   const { Id } = useParams();
-  const productDatas = dummies[Id];
+  const productDatas = dummies[Id - 1];
   const [modalState, setModalState] = useState(false);
   const [inputAddressValue, setInputAddressValue] = useState();
   const [inputZipCodeValue, setInputZipCodeValue] = useState();
@@ -20,7 +20,12 @@ const ProductOrder = () => {
   const [productDetails, setProductDetails] =
     useRecoilState(productDetailsAtom);
 
-  console.log(state);
+  const productPrice = state.total
+    ? state.total.totalPrice
+    : productDatas.price.sale * state.count;
+  const shipMentPrice = 2500;
+
+  console.log(state, productDatas);
   const navigate = useNavigate();
 
   const modalRef = useRef(); //화면 외부 클릭하면 창이 닫히게
@@ -68,17 +73,12 @@ const ProductOrder = () => {
           orderNumber: 1234567890123456,
           imgUrl: productDatas.imgUrl,
           title: productDatas.title,
-          price: 22500,
-          howMany: 1,
+          price: productPrice,
+          howMany: state.total ? state.total.totalCount : state.count,
         },
       ].reverse(),
     );
   };
-
-  const shipMentPrice = 2500;
-
-  const howMany = 1;
-  const productPrice = productDatas.price.sale * howMany;
 
   const onCompletePost = data => {
     console.log(data);
@@ -124,7 +124,9 @@ const ProductOrder = () => {
           ></ProductImage>
           <ProductDetails>
             <ProductTitle>{productDatas.title}</ProductTitle>
-            <ProductItems>{howMany}개</ProductItems>
+            <ProductItems>
+              {state.total ? state.total.totalCount : state.count}개
+            </ProductItems>
             <ProductPrice>{productPrice}원</ProductPrice>
           </ProductDetails>
         </ProductInfos>

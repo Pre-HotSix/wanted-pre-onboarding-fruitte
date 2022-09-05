@@ -50,6 +50,7 @@ const ProductNameAndOption = styled.div`
   width: 45%;
   display: flex;
   align-items: center;
+  text-align: start;
 `;
 
 const ProductImg = styled.img`
