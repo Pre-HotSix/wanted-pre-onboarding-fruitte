@@ -25,7 +25,6 @@ const ProductOrder = () => {
     : productDatas.price.sale * state.count;
   const shipMentPrice = 2500;
 
-  console.log(state, productDatas);
   const navigate = useNavigate();
 
   const modalRef = useRef(); //화면 외부 클릭하면 창이 닫히게
@@ -45,7 +44,6 @@ const ProductOrder = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
     if (
       e.target[1].value &&
       e.target[2].value &&
@@ -62,7 +60,6 @@ const ProductOrder = () => {
     const year = today.getFullYear(); // 년도
     const month = today.getMonth() + 1; // 월
     const date = today.getDate(); // 날짜
-    console.log(year, month, date);
     setProductDetails(
       [
         ...productDetails,
@@ -81,7 +78,6 @@ const ProductOrder = () => {
   };
 
   const onCompletePost = data => {
-    console.log(data);
     setModalState(false);
     setInputAddressValue(data.address);
     setInputZipCodeValue(data.zonecode);

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Products = ({ item }) => {
-  console.log(item);
   return (
     <Container>
       <DateAndNumber>
