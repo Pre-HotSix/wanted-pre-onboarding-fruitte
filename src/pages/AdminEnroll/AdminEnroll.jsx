@@ -1,8 +1,6 @@
-import styled from 'styled-components';
 import * as S from './style';
 import React from 'react';
 import AdminEnrollForm from 'components/Form/AdminEnrollForm';
-import { AiOutlineHome } from 'react-icons/ai';
 
 const AdminEnroll = () => {
   return (
