@@ -17,7 +17,7 @@
 |[이종호](https://github.com/devfrank9)|프론트엔드|원피스 완결 전에 오픈소스 컨트리뷰터 달기|
 |[민유경](https://github.com/MINYUKYUNG)|프론트엔드|10월 안에 취직!|
 |[강다현](https://github.com/KKangdaa)|프론트엔드|실무를 아는 신입개발자 되기|
-|[임성훈](https://github.com/sasumpi123)|프론트엔드| |
+|[임성훈](https://github.com/sasumpi123)|프론트엔드|좋은회사로 이직 성공하기|
 <br/>
 
 ## Commit & Merge Convention
