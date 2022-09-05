@@ -63,7 +63,7 @@ const ProButtons = data => {
   }, [sumPrice()]);
 
   const sumBox = () => {
-    if (show) {
+    if (show && required.length !== 0) {
       return (
         <S.SumBox>
           <span>Total : </span>
