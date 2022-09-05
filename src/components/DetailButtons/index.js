@@ -69,10 +69,10 @@ const ProButtons = data => {
   const sendData = () => {
     if (required.length === 0) {
       const state = { id, count: singleCount, price: singlePrice };
-      navigate('/productorder', { state: state });
+      navigate(`/productorder/${id}`, { state: state });
     } else {
       if (show) {
-        navigate('/productorder', { state: resultData() });
+        navigate(`/productorder/${id}`, { state: resultData() });
       } else alert('고객님, 필수선택을 완료하신 후 구매하기 버튼을 눌러주세요');
     }
   };

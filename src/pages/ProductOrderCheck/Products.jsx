@@ -10,7 +10,9 @@ const Products = ({ item }) => {
         <div className="orderNumber">${item.orderNumber}</div>
       </DateAndNumber>
       <ProductNameAndOption>
-        <ProductImg src={item.imgUrl}></ProductImg>
+        <ProductImg
+          src={item.imgUrl.length > 1 ? item.imgUrl[0] : item.imgUrl}
+        ></ProductImg>
         <ProductTitle>{item.title}</ProductTitle>
       </ProductNameAndOption>
       <ProductsAndPrice>
@@ -30,6 +32,7 @@ const Container = styled.div`
   display: flex;
   padding: 36px 10px;
   text-align: center;
+  align-items: center;
 `;
 
 const DateAndNumber = styled.div`
@@ -46,6 +49,7 @@ const DateAndNumber = styled.div`
 const ProductNameAndOption = styled.div`
   width: 45%;
   display: flex;
+  align-items: center;
 `;
 
 const ProductImg = styled.img`
@@ -71,4 +75,5 @@ const ReviewButton = styled.button`
   background-color: ${({ theme }) => theme.colors.MAIN_COLOR};
   font-size: 14px;
   border-radius: 20px;
+  cursor: pointer;
 `;

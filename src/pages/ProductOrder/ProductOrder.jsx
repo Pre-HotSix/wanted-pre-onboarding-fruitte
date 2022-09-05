@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as XButton } from '../../assets/X_InActive.svg';
+import { ReactComponent as checkButton } from '../../assets/checkButton.svg';
 import DaumPostcode from 'react-daum-postcode';
 import { orderInfos } from 'constants/orderInfos';
 import { dummies } from 'constants/dummy';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { productDetailsAtom } from 'recoil/product';
 
-// import { useParams } from 'react-router-dom';
-
 const ProductOrder = () => {
-  // const { id } = useParams();
-  const productDatas = dummies[0];
+  const { state } = useLocation();
+  const { Id } = useParams();
+  const productDatas = dummies[Id];
   const [modalState, setModalState] = useState(false);
   const [inputAddressValue, setInputAddressValue] = useState();
   const [inputZipCodeValue, setInputZipCodeValue] = useState();
@@ -20,6 +20,7 @@ const ProductOrder = () => {
   const [productDetails, setProductDetails] =
     useRecoilState(productDetailsAtom);
 
+  console.log(state);
   const navigate = useNavigate();
 
   const modalRef = useRef(); //화면 외부 클릭하면 창이 닫히게
@@ -57,16 +58,21 @@ const ProductOrder = () => {
     const month = today.getMonth() + 1; // 월
     const date = today.getDate(); // 날짜
     console.log(year, month, date);
-    setProductDetails([...productDetails], {
-      year: year,
-      month: month,
-      day: date,
-      orderNumber: 1234567890123456,
-      imgUrl: 'https://cdn.imweb.me/thumbnail/20220520/873c30ce7d7f4.png',
-      title: '물에 타먹는 제주 수제 감귤칩(10봉지x1BOX)',
-      price: 22500,
-      howMany: 1,
-    });
+    setProductDetails(
+      [
+        ...productDetails,
+        {
+          year: year,
+          month: month,
+          day: date,
+          orderNumber: 1234567890123456,
+          imgUrl: productDatas.imgUrl,
+          title: productDatas.title,
+          price: 22500,
+          howMany: 1,
+        },
+      ].reverse(),
+    );
   };
 
   const shipMentPrice = 2500;
@@ -103,14 +109,19 @@ const ProductOrder = () => {
   const handleAddress = e => {
     setInputAddressValue(e.target.value);
   };
-
   return (
     <Container>
       <ModalBlock modalState={modalState}></ModalBlock>
-      <PayTitle>결제하기</PayTitle>
+      <CheckButtonIcon></CheckButtonIcon>
       <ProductContainer>
         <ProductInfos>
-          <ProductImage src={productDatas.imgUrl}></ProductImage>
+          <ProductImage
+            src={
+              productDatas.imgUrl.length > 1
+                ? productDatas.imgUrl[0]
+                : productDatas.imgUrl
+            }
+          ></ProductImage>
           <ProductDetails>
             <ProductTitle>{productDatas.title}</ProductTitle>
             <ProductItems>{howMany}개</ProductItems>
@@ -201,7 +212,7 @@ const ProductOrder = () => {
               </PayMethodContainer>
               <PostCodeWrapper ref={modalRef} modalState={modalState}>
                 <PostCodeHeader>
-                  <StyledMyIcon onClick={handleXbutton}></StyledMyIcon>
+                  <XbuttonIcon onClick={handleXbutton}></XbuttonIcon>
                 </PostCodeHeader>
                 <DaumPostcode
                   style={postCodeStyle}
@@ -273,12 +284,6 @@ const ModalBlock = styled.div`
   left: 0;
 `;
 
-const PayTitle = styled.div`
-  color: ${({ theme }) => theme.colors.MAIN_COLOR};
-  margin: auto;
-  margin-bottom: 50px;
-`;
-
 const ProductContainer = styled.div``;
 
 const ProductInfos = styled.div`
@@ -286,6 +291,7 @@ const ProductInfos = styled.div`
   padding-bottom: 30px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.PRODUCT_BORDER_BOTTOM};
   margin-bottom: 30px;
+  align-items: center;
 `;
 
 const ProductImage = styled.img`
@@ -301,9 +307,13 @@ const ProductDetails = styled.div`
   align-items: flex-start;
 `;
 
-const ProductTitle = styled.div``;
+const ProductTitle = styled.div`
+  margin-bottom: 4px;
+`;
 
-const ProductItems = styled.div``;
+const ProductItems = styled.div`
+  margin-bottom: 4px;
+`;
 
 const ProductPrice = styled.div`
   font-weight: bold;
@@ -425,12 +435,16 @@ const PostCodeHeader = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.LIGHT_GRAY};
 `;
 
-const StyledMyIcon = styled(XButton)`
+const XbuttonIcon = styled(XButton)`
   position: absolute;
   top: 15px;
   right: 15px;
   cursor: pointer;
   z-index: 200;
+`;
+
+const CheckButtonIcon = styled(checkButton)`
+  margin-bottom: 50px;
 `;
 
 const PayMethodTitle = styled.div`

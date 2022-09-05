@@ -46,7 +46,8 @@ const ProductOrderCheck = () => {
 export default ProductOrderCheck;
 
 const Container = styled.div`
-  padding: 50px 120px 100px 120px;
+  padding: 50px 0 100px 0;
+  width: 1200px;
   .title {
     padding-bottom: 15px;
     font-size: 24px;
