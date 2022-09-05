@@ -37,7 +37,8 @@ const ProButtons = data => {
         const count = multiCount[ele[0]];
         const semiPrice = ele[1] * count;
         const price = semiPrice.toLocaleString() + '원';
-        state[index] = { name, count, price };
+        state[`${index}데이터`] = { name, count, price };
+        console.log(state);
         state.total = {
           ...state.total,
           totalCount: state.total.totalCount + count,
