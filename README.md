@@ -2,6 +2,8 @@
 
 ## 배포 링크
 
+https://hotsix-fruitte.netlify.app/
+
 <br/>
 
 ## 팀원들을 소개합니다.
