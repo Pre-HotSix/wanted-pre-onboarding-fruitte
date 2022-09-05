@@ -1,5 +1,5 @@
 import * as S from './style';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 
@@ -12,6 +12,7 @@ const ProButtons = data => {
     multiCount,
     multiPrice,
     show,
+    setShow,
   } = data;
   const navigate = useNavigate();
   const [heart, setHeart] = useState(0);
@@ -54,6 +55,12 @@ const ProButtons = data => {
     const sumResult = total.toLocaleString() + '원';
     return sumResult;
   };
+
+  useEffect(() => {
+    if (sumPrice() === '0원') {
+      setShow(!show);
+    }
+  }, [sumPrice()]);
 
   const sumBox = () => {
     if (show) {

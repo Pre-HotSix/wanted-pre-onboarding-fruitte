@@ -139,6 +139,7 @@ const ProCount = data => {
     multiCount,
     multiPrice,
     show,
+    setShow,
   };
 
   return (
