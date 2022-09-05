@@ -18,7 +18,9 @@ const RootRoute = () => {
           <Route path="/productdetail" element={<ProductDetail />}>
             <Route path=":docId" element={<ProductDetail />} />
           </Route>
-          <Route path="/productorder" element={<ProductOrder />} />
+          <Route path="/productorder" element={<ProductOrder />}>
+            <Route path=":Id" element={<ProductDetail />} />
+          </Route>
           <Route path="/productordercheck" element={<ProductOrderCheck />} />
         </Route>
 
