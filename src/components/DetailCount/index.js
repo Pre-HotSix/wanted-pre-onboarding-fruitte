@@ -94,7 +94,7 @@ const ProCount = data => {
   };
 
   const openCloseBtn = () => {
-    if (show) {
+    if (show && required.length !== 0) {
       return (
         <S.ToggleButton onClick={() => setShow(!show)}>
           <FaChevronUp />
