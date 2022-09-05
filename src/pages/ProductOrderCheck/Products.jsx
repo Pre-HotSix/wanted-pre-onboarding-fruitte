@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Products = ({ item }) => {
-  console.log(item);
   return (
     <Container>
       <DateAndNumber>
@@ -50,6 +49,7 @@ const ProductNameAndOption = styled.div`
   width: 45%;
   display: flex;
   align-items: center;
+  text-align: start;
 `;
 
 const ProductImg = styled.img`

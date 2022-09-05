@@ -12,7 +12,7 @@ import { productDetailsAtom } from 'recoil/product';
 const ProductOrder = () => {
   const { state } = useLocation();
   const { Id } = useParams();
-  const productDatas = dummies[Id];
+  const productDatas = dummies[Id - 1];
   const [modalState, setModalState] = useState(false);
   const [inputAddressValue, setInputAddressValue] = useState();
   const [inputZipCodeValue, setInputZipCodeValue] = useState();
@@ -20,7 +20,11 @@ const ProductOrder = () => {
   const [productDetails, setProductDetails] =
     useRecoilState(productDetailsAtom);
 
-  console.log(state);
+  const productPrice = state.total
+    ? state.total.totalPrice
+    : productDatas.price.sale * state.count;
+  const shipMentPrice = 2500;
+
   const navigate = useNavigate();
 
   const modalRef = useRef(); //화면 외부 클릭하면 창이 닫히게
@@ -40,7 +44,6 @@ const ProductOrder = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
     if (
       e.target[1].value &&
       e.target[2].value &&
@@ -57,7 +60,6 @@ const ProductOrder = () => {
     const year = today.getFullYear(); // 년도
     const month = today.getMonth() + 1; // 월
     const date = today.getDate(); // 날짜
-    console.log(year, month, date);
     setProductDetails(
       [
         ...productDetails,
@@ -68,20 +70,14 @@ const ProductOrder = () => {
           orderNumber: 1234567890123456,
           imgUrl: productDatas.imgUrl,
           title: productDatas.title,
-          price: 22500,
-          howMany: 1,
+          price: productPrice,
+          howMany: state.total ? state.total.totalCount : state.count,
         },
       ].reverse(),
     );
   };
 
-  const shipMentPrice = 2500;
-
-  const howMany = 1;
-  const productPrice = productDatas.price.sale * howMany;
-
   const onCompletePost = data => {
-    console.log(data);
     setModalState(false);
     setInputAddressValue(data.address);
     setInputZipCodeValue(data.zonecode);
@@ -124,7 +120,9 @@ const ProductOrder = () => {
           ></ProductImage>
           <ProductDetails>
             <ProductTitle>{productDatas.title}</ProductTitle>
-            <ProductItems>{howMany}개</ProductItems>
+            <ProductItems>
+              {state.total ? state.total.totalCount : state.count}개
+            </ProductItems>
             <ProductPrice>{productPrice}원</ProductPrice>
           </ProductDetails>
         </ProductInfos>
